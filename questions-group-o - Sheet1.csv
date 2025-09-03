@@ -1,101 +1,121 @@
-questions,answer 1,answer2,answer3,correct
-What is the capital city of France?,London,Berlin,Madrid,Paris
-Who painted the Mona Lisa?,Vincent van Gogh,Claude Monet,Michelangelo,Leonardo da Vinci
-What is the largest planet in our solar system?,Mars,Saturn,Neptune,Jupiter
-In what year did World War II end?,1940,1955,1935,1945
-What is the chemical symbol for gold?,Ag,Pt,Na,Au
-Who wrote the play Romeo and Juliet?,Leo Tolstoy,Charles Dickens,Mark Twain,William Shakespeare
-Which element has the atomic number 1?,Helium,Carbon,Nitrogen,Hydrogen
-What is the longest river in the world?,Amazon River,Mississippi River,Yangtze River,Nile River
-Who was the first man to walk on the Moon?,Buzz Aldrin,Michael Collins,Yuri Gagarin,Neil Armstrong
-What is the national flower of Japan?,Rose,Tulip,Lily,Cherry blossom
-"In computing, what does “CPU” stand for?",Central Processing Utility,Computer Processing Unit,Central Program Unit,Central Processing Unit
-Who is known as the “Father of Geometry”?,Archimedes,Pythagoras,Euclid,Euclid
-What is the hardest natural substance on Earth?,Graphite,Quartz,Topaz,Diamond
-Which country is home to the kangaroo?,New Zealand,South Africa,Argentina,Australia
-What is the largest mammal in the world?,African elephant,Blue whale shark,Blue whale,Blue whale
-In which continent is the Sahara Desert located?,Asia,North America,Africa,Africa
-Who discovered penicillin?,Albert Einstein,Louis Pasteur,Gregor Mendel,Alexander Fleming
-What is the capital of Canada?,Vancouver,Toronto,Montreal,Ottawa
-Which gas do humans exhale in respiration?,Oxygen,Carbon dioxide,Nitrogen,Carbon dioxide
-Who is the author of Harry Potter?,Suzanne Collins,Stephen King,George R.R. Martin,J.K. Rowling
-How many sides does a hexagon have?,Seven,Eight,Nine,Six
-What is the currency of Japan?,Yen,Won,Dollar,Yen
-Which ocean is the largest in the world?,Atlantic Ocean,Indian Ocean,Pacific Ocean,Pacific Ocean
-What is the boiling point of water at sea level in Celsius?,90°C,120°C,50°C,100°C
-Who was the first President of the United States?,Abraham Lincoln,Thomas Jefferson,George Washington,George Washington
-In which sport is the term “love” used?,Basketball,Tennis (table),Golf,Tennis
-What is the tallest mountain in the world?,K2,Mount Kilimanjaro,Mount Everest (K2 as duplicate avoided earlier),Mount Everest
-What is the main ingredient in guacamole?,Tomato,Onion,Avocado oil,Avocado
-Who invented the telephone?,Thomas Edison,Nikola Tesla,Samuel Morse,Alexander Graham Bell
-What is the capital of Italy?,Venice,Milan,Florence,Rome
-Which metal is liquid at room temperature?,Iron,Mercury,Copper,Mercury
-How many players are there on a soccer team?,9,10,12,11
-What is the largest island in the world?,Madagascar,Greenland,Borneo,Greenland
-Who composed the music for The Nutcracker?,Johann Sebastian Bach,Wolfgang Amadeus Mozart,Tchaikovsky,Pyotr Ilyich Tchaikovsky
-What is the national animal of China?,Tiger,Panda,Dragon,Giant panda
-What is the square root of 81?,7,11,6,9
-Who was the first woman to win a Nobel Prize?,Rosalind Franklin,Marie Curie,Dorothy Hodgkin,Marie Curie
-What is the fastest land animal?,Horse,Cheetah,Leopard,Cheetah
-In which country did the Olympic Games originate?,Italy,France,Greece,Greece
-What is the freezing point of water in Fahrenheit?,20°F,10°F,0°F,32°F
-Who is the Greek god of the sea?,Zeus,Poseidon,Hades,Poseidon
-What is the capital of Australia?,Sydney,Melbourne,Canberra,Canberra
-What does “WWW” stand for in a website address?,World Wide Webbing,World Wide Web Organization,World Web Wide,World Wide Web
-Who was known as the “Maid of Orléans”?,Cleopatra,Marie Antoinette,Joan of Arc,Joan of Arc
-What is the chemical symbol for oxygen?,H2,O2O,Ox,O
-How many planets are there in the solar system?,8,10,12,8
-What is the capital of Egypt?,Istanbul,Cairo,Alexandria,Cairo
-Who painted the Sistine Chapel ceiling?,Leonardo da Vinci,Raphael,Michelangelo Buonarroti,Michelangelo
-Which blood type is known as the universal donor?,Type A,Type B,Type AB,O negative
-What is the largest ocean animal?,Orca,Blue whale shark,Sperm whale,Blue whale
-In which year did the Titanic sink?,1914,1939,1920,1912
-Who was the British Prime Minister during World War II?,Margaret Thatcher,David Cameron,Winston Churchill,Winston Churchill
-What is the currency of the United Kingdom?,Euro,Pound sterling,Shilling,Pound sterling
-Which organ in the human body purifies blood?,Lungs,Kidney,Liver,Kidneys
-What is the capital city of Russia?,St. Petersburg,Moscow,Kazan,Moscow
-Which bird is known for its ability to mimic human speech?,Peacock,Parrot,Crow,Parrot
-What is the capital of South Korea?,Busan,Seoul,Incheon,Seoul
-What is the smallest prime number?,1,2,3,2
-Who invented the light bulb?,Alexander Graham Bell,James Watt,Thomas Edison,Thomas Edison
-What is the largest desert in the world?,Gobi Desert,Kalahari Desert,Sahara Desert,Antarctica
-Which is the largest internal organ in the human body?,Stomach,Liver,Heart,Liver
-In which country is the Great Pyramid of Giza located?,Mexico,Peru,Sudan,Egypt
-Who is the current monarch of the United Kingdom (as of 2025)?,Prince William,King Charles III,Queen Elizabeth II,King Charles III
-What is the chemical formula for water?,HO,H2O2,HHO,H₂O
-Who wrote The Odyssey?,Virgil,Sophocles,Homer,Homer
-What is the capital of Brazil?,Rio de Janeiro,Brasília,São Paulo,Brasília
-How many stripes are there on the US flag?,25,50,15,13
-What is the national sport of Japan?,Taekwondo,Judo,Sumo wrestling,Sumo
-Who is known as the “Queen of Pop”?,Beyoncé,Madonna,Lady Gaga,Madonna
-Which is the smallest country in the world?,Monaco,Liechtenstein,Vatican City,Vatican City
-Which planet is known as the “Red Planet”?,Venus,Jupiter,Mercury,Mars
-What is the capital of Spain?,Barcelona,Madrid,Seville,Madrid
-Who developed the theory of relativity?,Isaac Newton,Galileo Galilei,Albert Einstein,Albert Einstein
-Which animal is known as the “King of the Jungle”?,Elephant,Lion,Tiger,Lion
-How many bones are there in the adult human body?,150,200,206,206
-Which is the most spoken language in the world?,Spanish,Mandarin Chinese,English,Mandarin Chinese
-What is the capital of Thailand?,Bangkok,Chiang Mai,Phuket,Bangkok
-What does the Roman numeral “X” represent?,50,100,5,10
-What is the main ingredient in hummus?,Rice,Chickpeas,Sesame seeds,Chickpeas
-Who was the first woman to fly solo across the Atlantic Ocean?,Valentina Tereshkova,Amelia Earhart,Bessie Coleman,Amelia Earhart
-What is the tallest building in the world (as of 2025)?,Shanghai Tower,Burj Khalifa,One World Trade Center,Burj Khalifa
-What is the capital of Germany?,Munich,Berlin,Hamburg,Berlin
-Which is the longest bone in the human body?,Spine,Femur,Tibia,Femur
-Who wrote Pride and Prejudice?,Charlotte Brontë,Emily Brontë,Jane Austen,Jane Austen
-What is the capital of Argentina?,Santiago,Buenos Aires,Rosario,Buenos Aires
-Which planet has the most moons?,Earth,Jupiter,Saturn,Saturn
-What is the national currency of India?,Taka,Rupee,Rupees,Rupee
-Who painted Starry Night?,Pablo Picasso,Claude Monet,Van Gogh,Vincent van Gogh
-What is the main language spoken in Brazil?,Spanish,Portuguese,French,Portuguese
-What is the capital of Turkey?,Athens,Istanbul,Ankara,Ankara
-Which vitamin is produced when a person is exposed to sunlight?,Vitamin C,Vitamin D3,Vitamin B12,Vitamin D
-Who was the first emperor of China?,Genghis Khan,Qin Shi Huang,Kublai Khan,Qin Shi Huang
-What is the capital of Mexico?,Guadalajara,Monterrey,Mexico City,Mexico City
-What is the main ingredient in traditional sushi?,Chicken,Fish,Seaweed,Rice
-Who is the Norse god of thunder?,Odin,Thor,Loki,Thor
-What is the capital of Kenya?,Nairobi,Mombasa,Kigali,Nairobi
-Which country invented paper?,Greece,China,Egypt,China
-How many continents are there in the world?,5,6,4,7
-What is the currency of South Africa?,Dollar,Rand,Peso,Rand
-Who discovered America in 1492?,Marco Polo,Christopher Columbus,Amerigo Vespucci,Christopher Columbus
+question,opt1,opt2,opt3,correct,difficulty
+What is the capital city of France?,London,Berlin,Madrid,Paris,Easy
+Who painted the Mona Lisa?,Vincent van Gogh,Claude Monet,Michelangelo,Leonardo da Vinci,Easy
+What is the largest planet in our solar system?,Mars,Saturn,Neptune,Jupiter,Easy
+In what year did World War II end?,1940,1955,1935,1945,Easy
+What is the chemical symbol for gold?,Ag,Pt,Na,Au,Easy
+Who wrote the play Romeo and Juliet?,Leo Tolstoy,Charles Dickens,Mark Twain,William Shakespeare,Easy
+Which element has the atomic number 1?,Helium,Carbon,Nitrogen,Hydrogen,Easy
+What is the longest river in the world?,Amazon River,Mississippi River,Yangtze River,Nile River,Easy
+Who was the first man to walk on the Moon?,Buzz Aldrin,Michael Collins,Yuri Gagarin,Neil Armstrong,Easy
+What is the national flower of Japan?,Rose,Tulip,Lily,Cherry blossom,Easy
+In computing, what does “CPU” stand for?,Central Processing Utility,Computer Processing Unit,Central Program Unit,Central Processing Unit,Easy
+Who is known as the “Father of Geometry”?,Archimedes,Pythagoras,Euclid,Euclid,Easy
+What is the hardest natural substance on Earth?,Graphite,Quartz,Topaz,Diamond,Easy
+Which country is home to the kangaroo?,New Zealand,South Africa,Argentina,Australia,Easy
+What is the largest mammal in the world?,African elephant,Blue whale shark,Blue whale,Blue whale,Easy
+In which continent is the Sahara Desert located?,Asia,North America,Africa,Africa,Easy
+Who discovered penicillin?,Albert Einstein,Louis Pasteur,Gregor Mendel,Alexander Fleming,Easy
+What is the capital of Canada?,Vancouver,Toronto,Montreal,Ottawa,Easy
+Which gas do humans exhale in respiration?,Oxygen,Nitrogen,Carbon dioxide,Carbon dioxide,Easy
+Who is the author of Harry Potter?,Suzanne Collins,Stephen King,George R.R. Martin,J.K. Rowling,Easy
+How many sides does a hexagon have?,Seven,Eight,Nine,Six,Easy
+What is the currency of Japan?,Won,Dollar,Yen,Yen,Easy
+Which ocean is the largest in the world?,Atlantic Ocean,Indian Ocean,Pacific Ocean,Pacific Ocean,Easy
+What is the boiling point of water at sea level in Celsius?,90°C,120°C,50°C,100°C,Easy
+Who was the first President of the United States?,Abraham Lincoln,Thomas Jefferson,George Washington,George Washington,Easy
+In which sport is the term “love” used?,Basketball,Tennis (table),Golf,Tennis,Easy
+What is the tallest mountain in the world?,K2,Mount Kilimanjaro,Mount Everest (K2 as duplicate avoided earlier),Mount Everest,Easy
+What is the main ingredient in guacamole?,Tomato,Onion,Avocado oil,Avocado,Easy
+Who invented the telephone?,Thomas Edison,Nikola Tesla,Samuel Morse,Alexander Graham Bell,Easy
+What is the capital of Italy?,Venice,Milan,Florence,Rome,Easy
+Which metal is liquid at room temperature?,Iron,Copper,Mercury,Mercury,Easy
+How many players are there on a soccer team?,9,10,12,11,Easy
+What is the largest island in the world?,Madagascar,Borneo,Greenland,Greenland,Easy
+Who composed the music for The Nutcracker?,Johann Sebastian Bach,Wolfgang Amadeus Mozart,Tchaikovsky,Pyotr Ilyich Tchaikovsky,Easy
+What is the national animal of China?,Tiger,Panda,Dragon,Giant panda,Easy
+What is the square root of 81?,7,11,6,9,Easy
+Who was the first woman to win a Nobel Prize?,Rosalind Franklin,Dorothy Hodgkin,Marie Curie,Marie Curie,Easy
+What is the fastest land animal?,Horse,Leopard,Cheetah,Cheetah,Easy
+In which country did the Olympic Games originate?,Italy,France,Greece,Greece,Easy
+What is the freezing point of water in Fahrenheit?,20°F,10°F,0°F,32°F,Easy
+Who is the Greek god of the sea?,Zeus,Hades,Apollo,Poseidon,Medium
+What is the capital of Australia?,Sydney,Melbourne,Canberra,Canberra,Medium
+What does “WWW” stand for in a website address?,World Wide Webbing,World Wide Web Organization,World Web Wide,World Wide Web,Medium
+Who was known as the “Maid of Orléans”?,Cleopatra,Marie Antoinette,Joan of Arc,Joan of Arc,Medium
+What is the chemical symbol for oxygen?,H2,O2O,Ox,O,Medium
+How many planets are there in the solar system?,8,10,12,8,Medium
+What is the capital of Egypt?,Istanbul,Cairo,Alexandria,Cairo,Medium
+Who painted the Sistine Chapel ceiling?,Leonardo da Vinci,Raphael,Michelangelo Buonarroti,Michelangelo,Medium
+Which blood type is known as the universal donor?,Type A,Type B,Type AB,O negative,Medium
+What is the largest ocean animal?,Orca,Blue whale shark,Sperm whale,Blue whale,Medium
+In which year did the Titanic sink?,1914,1939,1920,1912,Medium
+Who was the British Prime Minister during World War II?,Margaret Thatcher,David Cameron,Winston Churchill,Winston Churchill,Medium
+What is the currency of the United Kingdom?,Euro,Pound sterling,Shilling,Pound sterling,Medium
+Which organ in the human body purifies blood?,Lungs,Kidney,Liver,Kidneys,Medium
+What is the capital city of Russia?,St. Petersburg,Moscow,Kazan,Moscow,Medium
+Which bird is known for its ability to mimic human speech?,Peacock,Parrot,Crow,Parrot,Medium
+What is the capital of South Korea?,Busan,Seoul,Incheon,Seoul,Medium
+What is the smallest prime number?,1,3,5,2,Medium
+Who invented the light bulb?,Alexander Graham Bell,James Watt,Thomas Edison,Thomas Edison,Medium
+What is the largest desert in the world?,Gobi Desert,Kalahari Desert,Sahara Desert,Antarctica,Medium
+Which is the largest internal organ in the human body?,Stomach,Liver,Heart,Liver,Medium
+In which country is the Great Pyramid of Giza located?,Mexico,Peru,Sudan,Egypt,Medium
+Who is the current monarch of the United Kingdom (as of 2025)?,Prince William,King Charles III,Queen Elizabeth II,King Charles III,Medium
+What is the chemical formula for water?,HO,H2O2,HHO,H₂O,Medium
+Who wrote The Odyssey?,Virgil,Sophocles,Homer,Homer,Medium
+What is the capital of Brazil?,Rio de Janeiro,Brasília,São Paulo,Brasília,Medium
+How many stripes are there on the US flag?,25,50,15,13,Medium
+What is the national sport of Japan?,Taekwondo,Judo,Sumo wrestling,Sumo,Medium
+Who is known as the “Queen of Pop”?,Beyoncé,Madonna,Lady Gaga,Madonna,Medium
+Which is the smallest country in the world?,Monaco,Liechtenstein,Vatican City,Vatican City,Medium
+Which planet is known as the “Red Planet”?,Venus,Jupiter,Mercury,Mars,Medium
+What is the capital of Spain?,Barcelona,Madrid,Seville,Madrid,Medium
+Who developed the theory of relativity?,Isaac Newton,Galileo Galilei,Albert Einstein,Albert Einstein,Medium
+Which animal is known as the “King of the Jungle”?,Elephant,Tiger,Leopard,Lion,Medium
+How many bones are there in the adult human body?,150,200,206,206,Medium
+Which is the most spoken language in the world?,Spanish,Mandarin Chinese,English,Mandarin Chinese,Medium
+What is the capital of Thailand?,Bangkok,Chiang Mai,Phuket,Bangkok,Medium
+What does the Roman numeral “X” represent?,50,100,5,10,Medium
+What is the main ingredient in hummus?,Rice,Chickpeas,Sesame seeds,Chickpeas,Medium
+Who was the first woman to fly solo across the Atlantic Ocean?,Valentina Tereshkova,Amelia Earhart,Bessie Coleman,Amelia Earhart,Difficult
+What is the tallest building in the world (as of 2025)?,Shanghai Tower,One World Trade Center,Taipei 101,Burj Khalifa,Difficult
+What is the capital of Germany?,Munich,Hamburg,Berlin,Berlin,Difficult
+Which is the longest bone in the human body?,Spine,Femur,Tibia,Femur,Difficult
+Who wrote Pride and Prejudice?,Charlotte Brontë,Emily Brontë,Jane Austen,Jane Austen,Difficult
+What is the capital of Argentina?,Santiago,Rosario,Buenos Aires,Buenos Aires,Difficult
+Which planet has the most moons?,Earth,Jupiter,Mars,Saturn,Difficult
+What is the national currency of India?,Taka,Rupees,Dinar,Rupee,Difficult
+Who painted Starry Night?,Pablo Picasso,Claude Monet,Van Gogh,Vincent van Gogh,Difficult
+What is the main language spoken in Brazil?,Spanish,French,Portuguese,Portuguese,Difficult
+What is the capital of Turkey?,Athens,Istanbul,Ankara,Ankara,Difficult
+Which vitamin is produced when a person is exposed to sunlight?,Vitamin C,Vitamin B12,Vitamin D3,Vitamin D,Difficult
+Who was the first emperor of China?,Genghis Khan,Kublai Khan,Qin Shi Huang,Qin Shi Huang,Difficult
+What is the capital of Mexico?,Guadalajara,Monterrey,Mexico City,Mexico City,Difficult
+What is the main ingredient in traditional sushi?,Chicken,Fish,Seaweed,Rice,Difficult
+Who is the Norse god of thunder?,Odin,Loki,Thor,Thor,Difficult
+What is the capital of Kenya?,Nairobi,Mombasa,Kigali,Nairobi,Difficult
+Which country invented paper?,Greece,Egypt,China,China,Difficult
+How many continents are there in the world?,5,6,4,7,Difficult
+What is the currency of South Africa?,Dollar,Peso,Rand,Rand,Difficult
+Who discovered America in 1492?,Marco Polo,Amerigo Vespucci,Christopher Columbus,Christopher Columbus,Difficult
+What is the capital of Sweden?,Copenhagen,Helsinki,Stockholm,Stockholm,Difficult
+Which organ is responsible for pumping blood in the body?,Lungs,Liver,Heart,Heart,Difficult
+What is the capital of New Zealand?,Wellington,Auckland,Christchurch,Wellington,Difficult
+Which physicist is known as the “father of modern physics”?,Niels Bohr,Max Planck,Albert Einstein,Albert Einstein,Difficult
+What is the capital of Saudi Arabia?,Dubai,Riyadh,Doha,Riyadh,Difficult
+Which is the smallest planet in the solar system?,Venus,Mercury,Mars,Mercury,Difficult
+Who was the Greek goddess of wisdom?,Hera,Artemis,Athena,Athena,Difficult
+What is the currency of Switzerland?,Euro,Swiss franc,Dollar,Swiss franc,Difficult
+Which scientist proposed the three laws of motion?,Galileo Galilei,Albert Einstein,Isaac Newton,Isaac Newton,Difficult
+What is the capital of Norway?,Copenhagen,Oslo,Stockholm,Oslo,Difficult
+Which is the deepest ocean?,Atlantic Ocean,Indian Ocean,Pacific Ocean,Pacific Ocean,Difficult
+Who was the first African-American president of the United States?,George Washington,Barack Obama,Martin Luther King Jr.,Barack Obama,Difficult
+What is the chemical symbol for sodium?,So,Na,S,N,Difficult
+Which continent is known as the “Dark Continent”?,Asia,South America,Africa,Africa,Difficult
+Who wrote The Divine Comedy?,Homer,Dante Alighieri,Sophocles,Dante Alighieri,Difficult
+What is the capital of the Philippines?,Cebu,Davao,Manila,Manila,Difficult
+What is the process by which plants make their food?,Respiration,Transpiration,Photosynthesis,Photosynthesis,Difficult
+Which ancient wonder was located in Babylon?,Great Pyramid,Colossus of Rhodes,Hanging Gardens,Hanging Gardens,Difficult
+What is the largest moon of Saturn?,Io,Titan,Europa,Titan,Difficult
+Which famous scientist discovered gravity after observing a falling apple?,Isaac Newton,Charles Darwin,Nicolaus Copernicus,Isaac Newton,Difficult
