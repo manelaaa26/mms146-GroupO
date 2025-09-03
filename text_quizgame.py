@@ -49,15 +49,15 @@ class Player:
 """
 The Question class maps all the questions in the game. It stores the question text, the list of possible answers, and the correct answer. It also provides a method to display the question to the player. This class uses abstraction by defining a general structure for all questions, hiding the details of how questions are displayed or checked, and allowing the game to handle them consistently.
 """
-
 class Question:
-    def __init__(self, question_text, answers, correct_answer):
+    def __init__(self, question_text, answers, correct_answer, difficulty):
         """
         Initializes a new instance of the Question class.
         """
         self.__question_text = question_text
         self.__answers = answers
         self.__correct_answer = correct_answer
+        self.__difficulty = difficulty
 
     def get_question_text(self):
         return self.__question_text
@@ -68,14 +68,34 @@ class Question:
     def get_correct_answer(self):
         return self.__correct_answer
 
+    def get_difficulty(self):
+        return self.__difficulty
+
     def display_question(self):
         """Displays the question and numbered answers to the player."""
         print(self.__question_text)
         for i, answer in enumerate(self.__answers):
             print(f"{i+1}. {answer}")
+            
+""" Difficulty """
+class Difficulty(ABC):
+    @abstractmethod
+    def get_points(self):
+        pass
 
+class Easy(Difficulty):
+    def get_points(self):
+        return 100
 
+class Medium(Difficulty):
+    def get_points(self):
+        return 200
 
+class Hard(Difficulty):
+    def get_points(self):
+        return 300
+
+""" Load Questions """
 def load_questions_from_csv(filename):
     """Load questions from a CSV file and return them as a list of Question objects."""
     question_bank = []
@@ -86,7 +106,8 @@ def load_questions_from_csv(filename):
                 question_text = row['question']
                 answers = [row['opt1'], row['opt2'], row['opt3']]
                 correct_answer = row['correct']
-                question_bank.append(Question(question_text, answers, correct_answer))
+                difficulty = row['difficulty']
+                question_bank.append(Question(question_text, answers, correct_answer, difficulty))
     except FileNotFoundError:
         print(f"Error: The file '{filename}' was not found.")
         return None
@@ -95,17 +116,26 @@ def load_questions_from_csv(filename):
         return None
     return question_bank
 
+""" Leaderboard """
+def save_score(player_name, score):
+    try:
+        with open("leaderboard.csv", "a", encoding="utf-8") as file:
+            file.write(f"{player_name},{score}\n")
+    except Exception as e:
+        print(f"Error saving score: {e}")
+
 """
 The QuizGame class manages the flow of the trivia game. It stores the list of questions, tracks the player's score, and provides methods to display questions, check answers, shuffle the question order, and reset the game. This class uses encapsulation to protect its data and provides a consistent interface for managing all questions in the game.
 """
 class QuizGame(Game):
-    def __init__(self, player, question_bank):
+    def __init__(self, player, question_bank, difficulty_level):
         super().__init__()
         self.__player = player
-        self.__question_bank = question_bank
+        self.__question_bank = [q for q in question_bank if q.get_difficulty() == type(difficulty_level).__name__]
+        self.__difficulty_level = difficulty_level
         self.__score = 0
         self.__current_question_index = 0
-        self.__selected_questions = random.sample(self.__question_bank, 10)
+        self.__selected_questions = random.sample(self.__question_bank, min(10, len(self.__question_bank)))
 
     # Getter for player
     def get_player(self):
@@ -120,15 +150,17 @@ class QuizGame(Game):
         return self.__selected_questions.copy()
 
     # Method to increment score
-    def add_score(self, points=100):
+    def add_score(self):
+        points = self.__difficulty_level.get_points()  
         self.__score += points
+        self.__player.add_score(points)
 
     def reset_game(self):
         """Reset the game state for a new round."""
         self.__player.reset_score()
         self.__score = 0
         self.__current_question_index = 0
-        self.__selected_questions = random.sample(self.__question_bank, 10)
+        self.__selected_questions = random.sample(self.__question_bank, min(10, len(self.__question_bank)))
     
     def start_game(self):
         """Starts the main quiz game loop, presenting questions and checking answers."""
@@ -139,19 +171,19 @@ class QuizGame(Game):
             if not self._is_running:
                 break
             
-            print(f"Question {i + 1} of 10:")
+            print(f"Question {i + 1} of {len(self.__selected_questions)}:")
             question.display_question()
             
             user_input = self.get_valid_input()
             
             if self.check_answer(question, user_input):
-                print("Correct! 🎉 You've earned 100 points.")
-                self.__player.add_score()
+               print(f"Correct! 🎉 You've earned {self.__difficulty_level.get_points()} points.")
+               self.add_score()
             else:
-                print(f"Incorrect. The correct answer was: {question.get_correct_answer()}. 😔")
+               print(f"Incorrect. The correct answer was: {question.get_correct_answer()}. 😔")
             
             print(f"Your current score: {self.__player.get_score()} points.")
-        
+        save_score(self.__player.get_name(), self.__player.get_score())     
         self.stop_game()
 
     def get_valid_input(self):
@@ -182,12 +214,31 @@ if __name__ == "__main__":
         player = Player(player_name)
         
         while True:
+            while True:
+                print("\nSelect difficulty:\n1. Easy\n2. Medium\n3. Hard")
+                difficulty_choice = input("Enter 1, 2, or 3: ").strip()
+                if difficulty_choice == "1":
+                    difficulty_level = Easy()
+                    break
+                if difficulty_choice == "2":
+                    difficulty_level = Medium()
+                    break
+                if difficulty_choice == "3":
+                    difficulty_level = Hard()
+                    break
+                print("Invalid choice. Please enter 1, 2, or 3.")
             # Create a new game instance to reset
-            game = QuizGame(player, questions)
+            game = QuizGame(player, questions, difficulty_level)
             
             game.start_game()
             
-            play_again = input("\nDo you want to play again? (yes/no): ").lower().strip()
-            if play_again != 'yes':
+            while True:
+                play_again = input("\nDo you want to play again? (yes/no): ").lower().strip()
+                if play_again in ['yes', 'no']:
+                    break
+                else:
+                    print("Invalid input. Please enter 'yes' or 'no'.")
+
+            if play_again == 'no':
                 print("Thanks for playing! Goodbye.")
                 break
