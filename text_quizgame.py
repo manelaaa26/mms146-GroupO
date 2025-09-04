@@ -1,5 +1,6 @@
 import csv
 import random
+import os
 from abc import ABC, abstractmethod
 
 class Game(ABC):
@@ -100,7 +101,10 @@ def load_questions_from_csv(filename):
     """Load questions from a CSV file and return them as a list of Question objects."""
     question_bank = []
     try:
-        with open(filename, newline='', encoding="utf-8") as csvfile:
+        scriptdir = os.path.dirname(os.path.abspath(__file__))
+        filepath = os.path.join(scriptdir, filename)
+        
+        with open(filepath, newline='', encoding="utf-8") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
                 question_text = row['question']
