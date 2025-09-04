@@ -219,7 +219,7 @@ if __name__ == "__main__":
         
         while True:
             while True:
-                print("\nSelect difficulty:\n1. Easy\n2. Medium\n3. Hard")
+                print("\nSelect difficulty:\n1. Easy\n2. Medium\n3. Difficult")
                 difficulty_choice = input("Enter 1, 2, or 3: ").strip()
                 if difficulty_choice == "1":
                     difficulty_level = Easy()
