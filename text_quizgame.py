@@ -1,6 +1,7 @@
 import csv
 import random
 import os
+import pickle
 from abc import ABC, abstractmethod
 
 class Game(ABC):
@@ -21,10 +22,9 @@ class Game(ABC):
     
 
 """
-The Player class stores information about the person playing the game, including their name and current score. It provides methods to get and update the player's name and score, allowing the game to track progress and display rankings on the leaderboard.
+The Player class stores information about the person playing the game, including their name and current score. 
+It provides methods to get and update the player's name and score, allowing the game to track progress and display rankings on the leaderboard.
 """
-
-import pickle
 
 class Player:
     def __init__(self, player_name):
@@ -47,30 +47,32 @@ class Player:
     def reset_score(self):
         """Reset player's score to zero (for new games)."""
         self.__score = 0
-    
- # --- Methods allowing a player to save his game and return on it ---
-    
-    def save_game(self, filename="savegame.pkl"):
-        """Save player state to a file."""
+
+    # --- Methods allowing a player to save his game and return to it ---
+    def save_progress(self, game_state, filename="savegame.pkl"):
+        """Save player and game state to a file."""
         with open(filename, "wb") as f:
-            pickle.dump(self, f)
-        print(f"Game saved as {filename}!")
+            pickle.dump({"player": self, "game_state": game_state}, f)
+        print(f"Game progress saved as {filename}!")
 
     @staticmethod
-    
-    def load_game(filename="savegame.pkl"):
-        """Load player state from a file."""
+    def load_progress(filename="savegame.pkl"):
+        """Load player and game state from a file."""
         try:
             with open(filename, "rb") as f:
-                player = pickle.load(f)
-            print(f"Game loaded from {filename}!")
-            return player
+                data = pickle.load(f)
+            print(f"Game progress loaded from {filename}!")
+            return data["player"], data["game_state"]
         except FileNotFoundError:
             print("No saved game found!")
-            return None
-            
+            return None, None
+
+
 """
-The Question class maps all the questions in the game. It stores the question text, the list of possible answers, and the correct answer. It also provides a method to display the question to the player. This class uses abstraction by defining a general structure for all questions, hiding the details of how questions are displayed or checked, and allowing the game to handle them consistently.
+The Question class maps all the questions in the game. 
+It stores the question text, the list of possible answers, and the correct answer. 
+It also provides a method to display the question to the player. 
+This class uses abstraction by defining a general structure for all questions, hiding the details of how questions are displayed or checked, and allowing the game to handle them consistently.
 """
 class Question:
     def __init__(self, question_text, answers, correct_answer, difficulty):
@@ -103,6 +105,7 @@ class Question:
         for i, answer in enumerate(self.__shuffled_answers):
             print(f"{i+1}. {answer}")
             
+
 """ Difficulty """
 class Difficulty(ABC):
     @abstractmethod
@@ -120,6 +123,7 @@ class Medium(Difficulty):
 class Difficult(Difficulty):
     def get_points(self):
         return 300
+
 
 """ Load Questions """
 def load_questions_from_csv(filename):
@@ -145,11 +149,11 @@ def load_questions_from_csv(filename):
         return None
     return question_bank
 
+
 """ Leaderboard """
 def save_score(player_name, score):
     """Save player name and score to the leaderboard.txt file."""
     try:
-
         with open("leaderboard.txt", "a", encoding="utf-8") as file:
             file.write(f"{player_name},{score}\n")
     except Exception as e:
@@ -179,17 +183,20 @@ def display_leaderboard():
     except Exception as e:
         print(f"Error loading leaderboard: {e}")
 
+
 """
-The QuizGame class manages the flow of the trivia game. It stores the list of questions, tracks the player's score, and provides methods to display questions, check answers, shuffle the question order, and reset the game. This class uses encapsulation to protect its data and provides a consistent interface for managing all questions in the game.
+The QuizGame class manages the flow of the trivia game. 
+It stores the list of questions, tracks the player's score, and provides methods to display questions, check answers, shuffle the question order, and reset the game. 
+This class uses encapsulation to protect its data and provides a consistent interface for managing all questions in the game.
 """
 class QuizGame(Game):
-    def __init__(self, player, question_bank, difficulty_level):
+    def __init__(self, player, question_bank, difficulty_level, current_index=0, score=0):
         super().__init__()
         self.__player = player
         self.__question_bank = [q for q in question_bank if q.get_difficulty().lower() == type(difficulty_level).__name__.lower()]
         self.__difficulty_level = difficulty_level
-        self.__score = 0
-        self.__current_question_index = 0
+        self.__score = score
+        self.__current_question_index = current_index
         self.__selected_questions = random.sample(self.__question_bank, min(10, len(self.__question_bank)))
 
     # Getter for player
@@ -221,14 +228,12 @@ class QuizGame(Game):
         print(f"\n--- Welcome, {self.__player.get_name()}, to the Quiz! ---\n")
         self._is_running = True
         
-        # Reset the player's score at the start of each game.
-        self.__player.reset_score()
-        
-        for i, question in enumerate(self.__selected_questions):
+        while self.__current_question_index < len(self.__selected_questions):
             if not self._is_running:
                 break
-            
-            print(f"Question {i + 1} of {len(self.__selected_questions)}:")
+
+            question = self.__selected_questions[self.__current_question_index]
+            print(f"Question {self.__current_question_index + 1} of {len(self.__selected_questions)}:")
             question.display_question()
             
             user_input = self.get_valid_input()
@@ -240,6 +245,15 @@ class QuizGame(Game):
                 print(f"Incorrect. The correct answer was: {question.get_correct_answer()}. 😔")
             
             print(f"Your current score: {self.get_score()} points.")
+
+            # Save progress after each question
+            self.__player.save_progress({
+                "score": self.__score,
+                "current_index": self.__current_question_index + 1,
+                "difficulty": type(self.__difficulty_level).__name__
+            })
+
+            self.__current_question_index += 1
         
         save_score(self.__player.get_name(), self.get_score())
         self.stop_game()
@@ -247,7 +261,6 @@ class QuizGame(Game):
     def get_valid_input(self):
         """Handles user input and validates it, providing error handling."""
         while True:
-            # Changed to handle 4 options now
             answer = input("Enter the number of your answer (1, 2, 3, or 4): ").strip()
             if answer.isdigit() and 1 <= int(answer) <= 4:
                 return int(answer)
@@ -256,64 +269,60 @@ class QuizGame(Game):
     def check_answer(self, question, user_input_index):
         """Checks if the user's answer is correct based on the index they provided."""
         try:
-            # Now uses the shuffled answers list to check
             selected_answer_text = question.get_answers()[user_input_index - 1]
             return selected_answer_text.strip().lower() == question.get_correct_answer().strip().lower()
         except IndexError:
             return False
 
+
 if __name__ == "__main__":
     # Main game loop for user interaction
-    
     questions = load_questions_from_csv("questions-group-o-Sheet1.csv")
     if questions is None or len(questions) < 10:
         print("Exiting game due to an issue with the question bank.")
     else:
-        # Create player and get name once before the game loop
         player_name = input("Enter your name: ")
         player = Player(player_name)
         
         while True:
-            while True:
-                print("\nSelect an option:\n1. Play Game\n2. View Leaderboard\n3. Exit")
-                main_choice = input("Enter 1, 2, or 3: ").strip()
+            print("\nSelect an option:\n1. Play Game\n2. View Leaderboard\n3. Continue Game\n4. Exit")
+            main_choice = input("Enter 1, 2, 3, or 4: ").strip()
 
-                if main_choice == "1":
-                    while True:
-                        print("\nSelect difficulty:\n1. Easy\n2. Medium\n3. Difficult")
-                        difficulty_choice = input("Enter 1, 2, or 3: ").strip()
-                        if difficulty_choice == "1":
-                            difficulty_level = Easy()
-                            break
-                        if difficulty_choice == "2":
-                            difficulty_level = Medium()
-                            break
-                        if difficulty_choice == "3":
-                            difficulty_level = Difficult()
-                            break
-                        print("Invalid choice. Please enter 1, 2, or 3.")
-                    
-                    game = QuizGame(player, questions, difficulty_level)
-                    game.start_game()
-                    break
-
-                elif main_choice == "2":
-                    display_leaderboard()
-                    break
-
-                elif main_choice == "3":
-                    print("Thanks for playing! Goodbye.")
-                    exit()
-                else:
+            if main_choice == "1":
+                # Select difficulty
+                while True:
+                    print("\nSelect difficulty:\n1. Easy\n2. Medium\n3. Difficult")
+                    difficulty_choice = input("Enter 1, 2, or 3: ").strip()
+                    if difficulty_choice == "1":
+                        difficulty_level = Easy()
+                        break
+                    if difficulty_choice == "2":
+                        difficulty_level = Medium()
+                        break
+                    if difficulty_choice == "3":
+                        difficulty_level = Difficult()
+                        break
                     print("Invalid choice. Please enter 1, 2, or 3.")
-            
-            while True:
-                play_again = input("\nDo you want to play another game? (yes/no): ").lower().strip()
-                if play_again in ['yes', 'no']:
-                    break
-                else:
-                    print("Invalid input. Please enter 'yes' or 'no'.")
-            
-            if play_again == 'no':
+                
+                game = QuizGame(player, questions, difficulty_level)
+                game.start_game()
+
+            elif main_choice == "2":
+                display_leaderboard()
+
+            elif main_choice == "3":
+                # Continue saved game
+                saved_player, game_state = Player.load_progress()
+                if saved_player and game_state:
+                    difficulty_map = {"Easy": Easy(), "Medium": Medium(), "Difficult": Difficult()}
+                    difficulty_level = difficulty_map.get(game_state["difficulty"], Easy())
+                    game = QuizGame(saved_player, questions, difficulty_level,
+                                    current_index=game_state["current_index"],
+                                    score=game_state["score"])
+                    game.start_game()
+
+            elif main_choice == "4":
                 print("Thanks for playing! Goodbye.")
                 break
+            else:
+                print("Invalid choice. Please enter 1, 2, 3, or 4.")
