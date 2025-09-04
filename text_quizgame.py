@@ -215,6 +215,14 @@ class QuizGame(Game):
     def add_score(self):
         points = self.__difficulty_level.get_points()  
         self.__score += points
+
+    def save_current_state(self):
+        """Helper method to DRY out saving state logic."""
+        self.__player.save_progress({
+            "score": self.__score,
+            "current_index": self.__current_question_index,
+            "difficulty": type(self.__difficulty_level).__name__
+        })
         
     def reset_game(self):
         """Reset the game state for a new round."""
@@ -238,7 +246,13 @@ class QuizGame(Game):
             
             user_input = self.get_valid_input()
             
-            if self.check_answer(question, user_input):
+            # If player typed "exit", stop and save progress
+            if user_input == "exit":
+                self.save_current_state()
+                print("Game progress saved. Exiting to main menu...")
+                return  
+            
+            if self.check_answer(question, int(user_input)):
                 print(f"Correct! 🎉 You've earned {self.__difficulty_level.get_points()} points.")
                 self.add_score()
             else:
@@ -246,25 +260,22 @@ class QuizGame(Game):
             
             print(f"Your current score: {self.get_score()} points.")
 
-            # Save progress after each question
-            self.__player.save_progress({
-                "score": self.__score,
-                "current_index": self.__current_question_index + 1,
-                "difficulty": type(self.__difficulty_level).__name__
-            })
-
+            # Save progress after answering
             self.__current_question_index += 1
+            self.save_current_state()
         
         save_score(self.__player.get_name(), self.get_score())
         self.stop_game()
 
     def get_valid_input(self):
-        """Handles user input and validates it, providing error handling."""
+        """Handles user input and validates it, allowing 'exit' as an option."""
         while True:
-            answer = input("Enter the number of your answer (1, 2, 3, or 4): ").strip()
+            answer = input("Enter the number of your answer (1–4) or type 'exit' to quit: ").strip().lower()
+            if answer == "exit":
+                return "exit"
             if answer.isdigit() and 1 <= int(answer) <= 4:
-                return int(answer)
-            print("Invalid input. Please enter a number from 1 to 4.")
+                return answer
+            print("Invalid input. Please enter 1–4 or 'exit'.")
 
     def check_answer(self, question, user_input_index):
         """Checks if the user's answer is correct based on the index they provided."""
@@ -273,6 +284,26 @@ class QuizGame(Game):
             return selected_answer_text.strip().lower() == question.get_correct_answer().strip().lower()
         except IndexError:
             return False
+
+
+""" Menu Helpers """
+def show_menu():
+    print("\nSelect an option:")
+    print("1. Play Game")
+    print("2. View Leaderboard")
+    print("3. Continue Game")
+    print("4. Exit")
+    return input("Enter 1, 2, 3, or 4: ").strip()
+
+
+def select_difficulty():
+    difficulty_map = {"1": Easy, "2": Medium, "3": Difficult}
+    while True:
+        print("\nSelect difficulty:\n1. Easy\n2. Medium\n3. Difficult")
+        choice = input("Enter 1, 2, or 3: ").strip()
+        if choice in difficulty_map:
+            return difficulty_map[choice]()
+        print("Invalid choice. Please enter 1, 2, or 3.")
 
 
 if __name__ == "__main__":
@@ -285,25 +316,10 @@ if __name__ == "__main__":
         player = Player(player_name)
         
         while True:
-            print("\nSelect an option:\n1. Play Game\n2. View Leaderboard\n3. Continue Game\n4. Exit")
-            main_choice = input("Enter 1, 2, 3, or 4: ").strip()
+            main_choice = show_menu()
 
             if main_choice == "1":
-                # Select difficulty
-                while True:
-                    print("\nSelect difficulty:\n1. Easy\n2. Medium\n3. Difficult")
-                    difficulty_choice = input("Enter 1, 2, or 3: ").strip()
-                    if difficulty_choice == "1":
-                        difficulty_level = Easy()
-                        break
-                    if difficulty_choice == "2":
-                        difficulty_level = Medium()
-                        break
-                    if difficulty_choice == "3":
-                        difficulty_level = Difficult()
-                        break
-                    print("Invalid choice. Please enter 1, 2, or 3.")
-                
+                difficulty_level = select_difficulty()
                 game = QuizGame(player, questions, difficulty_level)
                 game.start_game()
 
@@ -311,7 +327,6 @@ if __name__ == "__main__":
                 display_leaderboard()
 
             elif main_choice == "3":
-                # Continue saved game
                 saved_player, game_state = Player.load_progress()
                 if saved_player and game_state:
                     difficulty_map = {"Easy": Easy(), "Medium": Medium(), "Difficult": Difficult()}
