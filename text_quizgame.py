@@ -24,6 +24,8 @@ class Game(ABC):
 The Player class stores information about the person playing the game, including their name and current score. It provides methods to get and update the player's name and score, allowing the game to track progress and display rankings on the leaderboard.
 """
 
+import pickle
+
 class Player:
     def __init__(self, player_name):
         self.__player_name = player_name
@@ -46,7 +48,27 @@ class Player:
         """Reset player's score to zero (for new games)."""
         self.__score = 0
     
+ # --- Methods allowing a player to save his game and return on it ---
+    
+    def save_game(self, filename="savegame.pkl"):
+        """Save player state to a file."""
+        with open(filename, "wb") as f:
+            pickle.dump(self, f)
+        print(f"Game saved as {filename}!")
 
+    @staticmethod
+    
+    def load_game(filename="savegame.pkl"):
+        """Load player state from a file."""
+        try:
+            with open(filename, "rb") as f:
+                player = pickle.load(f)
+            print(f"Game loaded from {filename}!")
+            return player
+        except FileNotFoundError:
+            print("No saved game found!")
+            return None
+            
 """
 The Question class maps all the questions in the game. It stores the question text, the list of possible answers, and the correct answer. It also provides a method to display the question to the player. This class uses abstraction by defining a general structure for all questions, hiding the details of how questions are displayed or checked, and allowing the game to handle them consistently.
 """
