@@ -56,15 +56,18 @@ class Question:
         Initializes a new instance of the Question class.
         """
         self.__question_text = question_text
-        self.__answers = answers
         self.__correct_answer = correct_answer
         self.__difficulty = difficulty
+
+        all_answers = answers + [correct_answer]
+        random.shuffle(all_answers)
+        self.__shuffled_answers = all_answers
 
     def get_question_text(self):
         return self.__question_text
 
     def get_answers(self):
-        return self.__answers
+        return self.__shuffled_answers
 
     def get_correct_answer(self):
         return self.__correct_answer
@@ -75,7 +78,7 @@ class Question:
     def display_question(self):
         """Displays the question and numbered answers to the player."""
         print(self.__question_text)
-        for i, answer in enumerate(self.__answers):
+        for i, answer in enumerate(self.__shuffled_answers):
             print(f"{i+1}. {answer}")
             
 """ Difficulty """
@@ -122,11 +125,37 @@ def load_questions_from_csv(filename):
 
 """ Leaderboard """
 def save_score(player_name, score):
+    """Save player name and score to the leaderboard.txt file."""
     try:
-        with open("leaderboard.csv", "a", encoding="utf-8") as file:
+
+        with open("leaderboard.txt", "a", encoding="utf-8") as file:
             file.write(f"{player_name},{score}\n")
     except Exception as e:
         print(f"Error saving score: {e}")
+
+def display_leaderboard():
+    """Reads and displays the leaderboard from the leaderboard.txt file."""
+    leaderboard = []
+    try:
+        with open("leaderboard.txt", "r", encoding="utf-8") as file:
+            for line in file:
+                name, score = line.strip().split(',')
+                leaderboard.append({'name': name, 'score': int(score)})
+        
+        # Sort by score in descending order
+        leaderboard.sort(key=lambda x: x['score'], reverse=True)
+        
+        print("\n--- Leaderboard ---")
+        if not leaderboard:
+            print("The leaderboard is currently empty.")
+        else:
+            for i, entry in enumerate(leaderboard):
+                print(f"{i+1}. {entry['name']}: {entry['score']} points")
+        print("-------------------")
+    except FileNotFoundError:
+        print("\nNo leaderboard found yet. Play a game to create one!")
+    except Exception as e:
+        print(f"Error loading leaderboard: {e}")
 
 """
 The QuizGame class manages the flow of the trivia game. It stores the list of questions, tracks the player's score, and provides methods to display questions, check answers, shuffle the question order, and reset the game. This class uses encapsulation to protect its data and provides a consistent interface for managing all questions in the game.
@@ -157,7 +186,7 @@ class QuizGame(Game):
     def add_score(self):
         points = self.__difficulty_level.get_points()  
         self.__score += points
-       
+        
     def reset_game(self):
         """Reset the game state for a new round."""
         self.__player.reset_score()
@@ -166,44 +195,46 @@ class QuizGame(Game):
         self.__selected_questions = random.sample(self.__question_bank, min(10, len(self.__question_bank)))
     
     def start_game(self):
-    """Starts the main quiz game loop, presenting questions and checking answers."""
-    print(f"\n--- Welcome, {self.__player.get_name()}, to the Quiz! ---\n")
-    self._is_running = True
-    
-    # Reset the player's score at the start of each game.
-    self.__player.reset_score()
-    
-    for i, question in enumerate(self.__selected_questions):
-        if not self._is_running:
-            break
+        """Starts the main quiz game loop, presenting questions and checking answers."""
+        print(f"\n--- Welcome, {self.__player.get_name()}, to the Quiz! ---\n")
+        self._is_running = True
         
-        print(f"Question {i + 1} of {len(self.__selected_questions)}:")
-        question.display_question()
+        # Reset the player's score at the start of each game.
+        self.__player.reset_score()
         
-        user_input = self.get_valid_input()
+        for i, question in enumerate(self.__selected_questions):
+            if not self._is_running:
+                break
+            
+            print(f"Question {i + 1} of {len(self.__selected_questions)}:")
+            question.display_question()
+            
+            user_input = self.get_valid_input()
+            
+            if self.check_answer(question, user_input):
+                print(f"Correct! 🎉 You've earned {self.__difficulty_level.get_points()} points.")
+                self.add_score()
+            else:
+                print(f"Incorrect. The correct answer was: {question.get_correct_answer()}. 😔")
+            
+            print(f"Your current score: {self.get_score()} points.")
         
-        if self.check_answer(question, user_input):
-            print(f"Correct! 🎉 You've earned {self.__difficulty_level.get_points()} points.")
-            self.add_score()
-        else:
-            print(f"Incorrect. The correct answer was: {question.get_correct_answer()}. 😔")
-        
-        print(f"Your current score: {self.get_score()} points.")
-    
-    save_score(self.__player.get_name(), self.get_score())
-    self.stop_game()
+        save_score(self.__player.get_name(), self.get_score())
+        self.stop_game()
 
     def get_valid_input(self):
         """Handles user input and validates it, providing error handling."""
         while True:
-            answer = input("Enter the number of your answer (1, 2, or 3): ").strip()
-            if answer.isdigit() and 1 <= int(answer) <= 3:
+            # Changed to handle 4 options now
+            answer = input("Enter the number of your answer (1, 2, 3, or 4): ").strip()
+            if answer.isdigit() and 1 <= int(answer) <= 4:
                 return int(answer)
-            print("Invalid input. Please enter a number from 1 to 3.")
+            print("Invalid input. Please enter a number from 1 to 4.")
 
     def check_answer(self, question, user_input_index):
         """Checks if the user's answer is correct based on the index they provided."""
         try:
+            # Now uses the shuffled answers list to check
             selected_answer_text = question.get_answers()[user_input_index - 1]
             return selected_answer_text.strip().lower() == question.get_correct_answer().strip().lower()
         except IndexError:
@@ -222,26 +253,40 @@ if __name__ == "__main__":
         
         while True:
             while True:
-                print("\nSelect difficulty:\n1. Easy\n2. Medium\n3. Difficult")
-                difficulty_choice = input("Enter 1, 2, or 3: ").strip()
-                if difficulty_choice == "1":
-                    difficulty_level = Easy()
+                print("\nSelect an option:\n1. Play Game\n2. View Leaderboard\n3. Exit")
+                main_choice = input("Enter 1, 2, or 3: ").strip()
+
+                if main_choice == "1":
+                    while True:
+                        print("\nSelect difficulty:\n1. Easy\n2. Medium\n3. Difficult")
+                        difficulty_choice = input("Enter 1, 2, or 3: ").strip()
+                        if difficulty_choice == "1":
+                            difficulty_level = Easy()
+                            break
+                        if difficulty_choice == "2":
+                            difficulty_level = Medium()
+                            break
+                        if difficulty_choice == "3":
+                            difficulty_level = Difficult()
+                            break
+                        print("Invalid choice. Please enter 1, 2, or 3.")
+                    
+                    game = QuizGame(player, questions, difficulty_level)
+                    game.start_game()
                     break
-                if difficulty_choice == "2":
-                    difficulty_level = Medium()
+
+                elif main_choice == "2":
+                    display_leaderboard()
                     break
-                if difficulty_choice == "3":
-                    difficulty_level = Difficult()
-                    break
-                print("Invalid choice. Please enter 1, 2, or 3.")
-            
-            # Use the single, existing player object
-            game = QuizGame(player, questions, difficulty_level)
-            
-            game.start_game()
+
+                elif main_choice == "3":
+                    print("Thanks for playing! Goodbye.")
+                    exit()
+                else:
+                    print("Invalid choice. Please enter 1, 2, or 3.")
             
             while True:
-                play_again = input("\nDo you want to play again? (yes/no): ").lower().strip()
+                play_again = input("\nDo you want to play another game? (yes/no): ").lower().strip()
                 if play_again in ['yes', 'no']:
                     break
                 else:
