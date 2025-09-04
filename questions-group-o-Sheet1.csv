@@ -10,34 +10,34 @@ What is the longest river in the world?,Amazon River,Mississippi River,Yangtze R
 Who was the first man to walk on the Moon?,Buzz Aldrin,Michael Collins,Yuri Gagarin,Neil Armstrong,Easy
 What is the national flower of Japan?,Rose,Tulip,Lily,Cherry blossom,Easy
 In computing, what does “CPU” stand for?,Central Processing Utility,Computer Processing Unit,Central Program Unit,Central Processing Unit,Easy
-Who is known as the “Father of Geometry”?,Archimedes,Pythagoras,Euclid,Euclid,Easy
+Who is known as the “Father of Geometry”?,Archimedes,Pythagoras,Aristotle,Euclid,Easy
 What is the hardest natural substance on Earth?,Graphite,Quartz,Topaz,Diamond,Easy
 Which country is home to the kangaroo?,New Zealand,South Africa,Argentina,Australia,Easy
-What is the largest mammal in the world?,African elephant,Blue whale shark,Blue whale,Blue whale,Easy
+What is the largest mammal in the world?,African elephant,Whale shark,Blue whale,Blue whale,Easy
 In which continent is the Sahara Desert located?,Asia,North America,Africa,Africa,Easy
 Who discovered penicillin?,Albert Einstein,Louis Pasteur,Gregor Mendel,Alexander Fleming,Easy
 What is the capital of Canada?,Vancouver,Toronto,Montreal,Ottawa,Easy
 Which gas do humans exhale in respiration?,Oxygen,Nitrogen,Carbon dioxide,Carbon dioxide,Easy
 Who is the author of Harry Potter?,Suzanne Collins,Stephen King,George R.R. Martin,J.K. Rowling,Easy
 How many sides does a hexagon have?,Seven,Eight,Nine,Six,Easy
-What is the currency of Japan?,Won,Dollar,Yen,Yen,Easy
-Which ocean is the largest in the world?,Atlantic Ocean,Indian Ocean,Pacific Ocean,Pacific Ocean,Easy
+What is the currency of Japan?,Won,Dollar,Peso,Yen,Easy
+Which ocean is the largest in the world?,Atlantic Ocean,Indian Ocean,Arctic Ocean,Pacific Ocean,Easy
 What is the boiling point of water at sea level in Celsius?,90°C,120°C,50°C,100°C,Easy
-Who was the first President of the United States?,Abraham Lincoln,Thomas Jefferson,George Washington,George Washington,Easy
-In which sport is the term “love” used?,Basketball,Tennis (table),Golf,Tennis,Easy
-What is the tallest mountain in the world?,K2,Mount Kilimanjaro,Mount Everest (K2 as duplicate avoided earlier),Mount Everest,Easy
+Who was the first President of the United States?,Abraham Lincoln,Thomas Jefferson,John Kennedy,George Washington,Easy
+In which sport is the term “love” used?,Basketball,Tennis,Golf,Tennis,Easy
+What is the tallest mountain in the world?,K2,Mount Kilimanjaro,Mount Apo,Mount Everest,Easy
 What is the main ingredient in guacamole?,Tomato,Onion,Avocado oil,Avocado,Easy
 Who invented the telephone?,Thomas Edison,Nikola Tesla,Samuel Morse,Alexander Graham Bell,Easy
 What is the capital of Italy?,Venice,Milan,Florence,Rome,Easy
-Which metal is liquid at room temperature?,Iron,Copper,Mercury,Mercury,Easy
+Which metal is liquid at room temperature?,Iron,Copper,Gold,Mercury,Easy
 How many players are there on a soccer team?,9,10,12,11,Easy
 What is the largest island in the world?,Madagascar,Borneo,Greenland,Greenland,Easy
-Who composed the music for The Nutcracker?,Johann Sebastian Bach,Wolfgang Amadeus Mozart,Tchaikovsky,Pyotr Ilyich Tchaikovsky,Easy
-What is the national animal of China?,Tiger,Panda,Dragon,Giant panda,Easy
+Which animal is known as man’s best friend?,Cat,Horse,Parrot,Dog,Easy
+What is the national animal of China?,Tiger,Rabbit,Dragon,Giant panda,Easy
 What is the square root of 81?,7,11,6,9,Easy
-Who was the first woman to win a Nobel Prize?,Rosalind Franklin,Dorothy Hodgkin,Marie Curie,Marie Curie,Easy
-What is the fastest land animal?,Horse,Leopard,Cheetah,Cheetah,Easy
-In which country did the Olympic Games originate?,Italy,France,Greece,Greece,Easy
+Who was the first woman to win a Nobel Prize?,Rosalind Franklin,Dorothy Hodgkin,Ada Lovelace,Marie Curie,Easy
+What is the fastest land animal?,Horse,Leopard,Sloth,Cheetah,Easy
+In which country did the Olympic Games originate?,Italy,France,Spain,Greece,Easy
 What is the freezing point of water in Fahrenheit?,20°F,10°F,0°F,32°F,Easy
 Who is the Greek god of the sea?,Zeus,Hades,Apollo,Poseidon,Medium
 What is the capital of Australia?,Sydney,Melbourne,Canberra,Canberra,Medium
@@ -47,12 +47,12 @@ What is the chemical symbol for oxygen?,H2,O2O,Ox,O,Medium
 How many planets are there in the solar system?,8,10,12,8,Medium
 What is the capital of Egypt?,Istanbul,Cairo,Alexandria,Cairo,Medium
 Who painted the Sistine Chapel ceiling?,Leonardo da Vinci,Raphael,Michelangelo Buonarroti,Michelangelo,Medium
-Which blood type is known as the universal donor?,Type A,Type B,Type AB,O negative,Medium
+Which blood type is known as the universal donor?,Type A,Type B,Type AB,Type O,Medium
 What is the largest ocean animal?,Orca,Blue whale shark,Sperm whale,Blue whale,Medium
 In which year did the Titanic sink?,1914,1939,1920,1912,Medium
 Who was the British Prime Minister during World War II?,Margaret Thatcher,David Cameron,Winston Churchill,Winston Churchill,Medium
 What is the currency of the United Kingdom?,Euro,Pound sterling,Shilling,Pound sterling,Medium
-Which organ in the human body purifies blood?,Lungs,Kidney,Liver,Kidneys,Medium
+Which organ in the human body purifies blood?,Lungs,Kidneys,Liver,Kidneys,Medium
 What is the capital city of Russia?,St. Petersburg,Moscow,Kazan,Moscow,Medium
 Which bird is known for its ability to mimic human speech?,Peacock,Parrot,Crow,Parrot,Medium
 What is the capital of South Korea?,Busan,Seoul,Incheon,Seoul,Medium
@@ -85,7 +85,7 @@ Which is the longest bone in the human body?,Spine,Femur,Tibia,Femur,Difficult
 Who wrote Pride and Prejudice?,Charlotte Brontë,Emily Brontë,Jane Austen,Jane Austen,Difficult
 What is the capital of Argentina?,Santiago,Rosario,Buenos Aires,Buenos Aires,Difficult
 Which planet has the most moons?,Earth,Jupiter,Mars,Saturn,Difficult
-What is the national currency of India?,Taka,Rupees,Dinar,Rupee,Difficult
+What is the national currency of India?,Taka,Rupee,Dinar,Rupee,Difficult
 Who painted Starry Night?,Pablo Picasso,Claude Monet,Van Gogh,Vincent van Gogh,Difficult
 What is the main language spoken in Brazil?,Spanish,French,Portuguese,Portuguese,Difficult
 What is the capital of Turkey?,Athens,Istanbul,Ankara,Ankara,Difficult
@@ -119,3 +119,4 @@ What is the process by which plants make their food?,Respiration,Transpiration,P
 Which ancient wonder was located in Babylon?,Great Pyramid,Colossus of Rhodes,Hanging Gardens,Hanging Gardens,Difficult
 What is the largest moon of Saturn?,Io,Titan,Europa,Titan,Difficult
 Which famous scientist discovered gravity after observing a falling apple?,Isaac Newton,Charles Darwin,Nicolaus Copernicus,Isaac Newton,Difficult
+
