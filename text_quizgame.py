@@ -92,7 +92,7 @@ class Medium(Difficulty):
     def get_points(self):
         return 200
 
-class Hard(Difficulty):
+class Difficult(Difficulty):
     def get_points(self):
         return 300
 
@@ -135,7 +135,7 @@ class QuizGame(Game):
     def __init__(self, player, question_bank, difficulty_level):
         super().__init__()
         self.__player = player
-        self.__question_bank = [q for q in question_bank if q.get_difficulty() == type(difficulty_level).__name__]
+        self.__question_bank = [q for q in question_bank if q.get_difficulty().lower() == type(difficulty_level).__name__.lower()]
         self.__difficulty_level = difficulty_level
         self.__score = 0
         self.__current_question_index = 0
@@ -228,7 +228,7 @@ if __name__ == "__main__":
                     difficulty_level = Medium()
                     break
                 if difficulty_choice == "3":
-                    difficulty_level = Hard()
+                    difficulty_level = Difficult()
                     break
                 print("Invalid choice. Please enter 1, 2, or 3.")
             # Create a new game instance to reset
