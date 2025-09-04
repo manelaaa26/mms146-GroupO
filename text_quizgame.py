@@ -157,8 +157,7 @@ class QuizGame(Game):
     def add_score(self):
         points = self.__difficulty_level.get_points()  
         self.__score += points
-        self.__player.add_score(points)
-
+       
     def reset_game(self):
         """Reset the game state for a new round."""
         self.__player.reset_score()
@@ -167,28 +166,32 @@ class QuizGame(Game):
         self.__selected_questions = random.sample(self.__question_bank, min(10, len(self.__question_bank)))
     
     def start_game(self):
-        """Starts the main quiz game loop, presenting questions and checking answers."""
-        print(f"\n--- Welcome, {self.__player.get_name()}, to the Quiz! ---\n")
-        self._is_running = True
+    """Starts the main quiz game loop, presenting questions and checking answers."""
+    print(f"\n--- Welcome, {self.__player.get_name()}, to the Quiz! ---\n")
+    self._is_running = True
+    
+    # Reset the player's score at the start of each game.
+    self.__player.reset_score()
+    
+    for i, question in enumerate(self.__selected_questions):
+        if not self._is_running:
+            break
         
-        for i, question in enumerate(self.__selected_questions):
-            if not self._is_running:
-                break
-            
-            print(f"Question {i + 1} of {len(self.__selected_questions)}:")
-            question.display_question()
-            
-            user_input = self.get_valid_input()
-            
-            if self.check_answer(question, user_input):
-               print(f"Correct! 🎉 You've earned {self.__difficulty_level.get_points()} points.")
-               self.add_score()
-            else:
-               print(f"Incorrect. The correct answer was: {question.get_correct_answer()}. 😔")
-            
-            print(f"Your current score: {self.__player.get_score()} points.")
-        save_score(self.__player.get_name(), self.__player.get_score())     
-        self.stop_game()
+        print(f"Question {i + 1} of {len(self.__selected_questions)}:")
+        question.display_question()
+        
+        user_input = self.get_valid_input()
+        
+        if self.check_answer(question, user_input):
+            print(f"Correct! 🎉 You've earned {self.__difficulty_level.get_points()} points.")
+            self.add_score()
+        else:
+            print(f"Incorrect. The correct answer was: {question.get_correct_answer()}. 😔")
+        
+        print(f"Your current score: {self.get_score()} points.")
+    
+    save_score(self.__player.get_name(), self.get_score())
+    self.stop_game()
 
     def get_valid_input(self):
         """Handles user input and validates it, providing error handling."""
@@ -213,7 +216,7 @@ if __name__ == "__main__":
     if questions is None or len(questions) < 10:
         print("Exiting game due to an issue with the question bank.")
     else:
-        # Create player
+        # Create player and get name once before the game loop
         player_name = input("Enter your name: ")
         player = Player(player_name)
         
@@ -231,7 +234,8 @@ if __name__ == "__main__":
                     difficulty_level = Difficult()
                     break
                 print("Invalid choice. Please enter 1, 2, or 3.")
-            # Create a new game instance to reset
+            
+            # Use the single, existing player object
             game = QuizGame(player, questions, difficulty_level)
             
             game.start_game()
@@ -242,7 +246,7 @@ if __name__ == "__main__":
                     break
                 else:
                     print("Invalid input. Please enter 'yes' or 'no'.")
-
+            
             if play_again == 'no':
                 print("Thanks for playing! Goodbye.")
                 break
